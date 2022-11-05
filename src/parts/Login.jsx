@@ -25,11 +25,12 @@ const Login = () => {
   };
 
   return (
-    <div className="container-sm">
-      <form className="border" onSubmit={Autenticate}>
-        <div className="p-5">
-          <div className="justify-content-center">
-            <div className="w-50 m-0 m-auto">
+    <div className="container-xxl">
+      <div className="container-xxl p-0">
+      <form className="" onSubmit={Autenticate}>
+        <div className="container p-0">
+          <div className="justify-content-center w-100 px-0">
+            <div className="container w-75 py-5 px-0 m-0 m-auto">
               <h2>Log into Your Account</h2>
               <label className="form-label" htmlFor="user">Username</label>
               <input className="form-control" type="text" id="user" onChange={(e) => setuser(e.target.value)} />
@@ -39,16 +40,17 @@ const Login = () => {
           </div>
           <div className="justify-content-center">
             {
-              datos.length === 0 || estado == 0 ? <div className="text-danger w-50 m-0 m-auto p-2">{msg ? <div className=" m-0 m-auto p-2">Invalid Username or Password</div> : <div></div>}</div> : <div className="w-50 m-0 m-auto rounded-3 p-2">Bienvenido {datos[0].username} con Email: <b>{datos[0].email}</b></div>
+              datos.length === 0 || estado == 0 ? <div className="text-danger w-75 m-0 m-auto p-2">{msg ? <div className=" m-0 m-auto p-2">Invalid Username or Password</div> : <div></div>}</div> : <div className="w-75 m-0 m-auto p-2">Bienvenido <b>{datos[0].username}</b> con Email: <b>{datos[0].email}</b></div>
             }
           </div>
-          <div className="align-items-center justify-content-center">
-            <div className="w-50 m-0 m-auto p-3">
+          <div className="container  align-items-center justify-content-center">
+            <div className="container w-75 m-0 m-auto p-3">
               <button type="submit" className="w-100 btn btn-success">Login into account</button>
             </div>
           </div>
         </div>
       </form>
+      </div>
     </div>
   )
 };

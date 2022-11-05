@@ -11,7 +11,7 @@ root.render(
   <Router>
       <Routes>
         <Route index path='/' element={<Table/>}/>
-        <Route path='/loginp' element={<Login/>}/>
+        <Route path='/login' element={<Login/>}/>
       </Routes>
   </Router>
 
