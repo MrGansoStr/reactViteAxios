@@ -12,7 +12,7 @@ root.render(
     <Router>
       <Routes>
         <Route index path="/" element={<Table/>}/>
-        <Route path="/Login" element={<Login/>} />
+        <Route path="/login" element={<Login/>} />
       </Routes>
     </Router>
   </React.StrictMode>
