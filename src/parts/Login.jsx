@@ -40,7 +40,7 @@ const Login = () => {
           </div>
           <div className="justify-content-center">
             {
-              datos.length === 0 || estado == 0 ? <div className="text-danger w-75 m-0 m-auto p-2">{msg ? <div className=" m-0 m-auto p-2">Invalid Username or Password</div> : <div></div>}</div> : <div className="w-75 m-0 m-auto p-2">Bienvenido <b>{datos[0].username}</b> con Email: <b>{datos[0].email}</b></div>
+              datos.length === 0 || estado == 0 ? <div className="text-danger w-75 m-0 m-auto p-2">{msg ? <div className="text-white m-0 m-auto p-2 bg-danger bg-opacity-75 rounded-3 w-50 text-center">Invalid Username or Password</div> : <div></div>}</div> : <div className="w-50 m-0 m-auto p-2 bg-success bg-opacity-75 rounded-3 text-center">Bienvenido <b>{datos[0].username}</b> con Email: <b>{datos[0].email}</b></div>
             }
           </div>
           <div className="container  align-items-center justify-content-center">
