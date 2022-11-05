@@ -29,8 +29,8 @@ const Table = () => {
       </thead>
       <tbody>
         {
-          users.map((user) => (
-            <tr key={user.id}>
+          users.map((user, i) => (
+            <tr key={i}>
               <td>{user.id}</td>
               <td>{user.username}</td>
               <td>{user.email}</td>
