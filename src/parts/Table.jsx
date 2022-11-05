@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
+import Login from "./Login";
+
 
 const Table = () => {
 
@@ -39,6 +41,9 @@ const Table = () => {
     </table>
     <div className="container-sm">
       <button type="button" className="btn btn-success" onClick={ getUsers }>Get List Users</button>
+    </div>
+    <div className="p-5">
+      <Login/>
     </div>
     </div>
   );

@@ -8,12 +8,11 @@ import Login from "./parts/Login";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <React.StrictMode>
-    <Router>
+  <Router>
       <Routes>
-        <Route index path="/" element={<Table/>}/>
-        <Route path="/login" element={<Login/>} />
+        <Route index path='/' element={<Table/>}/>
+        <Route path='/loginp' element={<Login/>}/>
       </Routes>
-    </Router>
-  </React.StrictMode>
+  </Router>
+
 )
