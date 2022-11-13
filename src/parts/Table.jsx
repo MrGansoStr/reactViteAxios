@@ -35,7 +35,7 @@ const Table = ({auth}) => {
     if(auth) {
 
       try {
-        const { data } = await axios.get('http://localhost:9002/users', {
+        const { data } = await axios.get('https://restapinormal.vercel.app/users', {
           withCredentials: true, headers: {
             'Authorization': 'SDMFPQOWE10234123KJDLSKF012',
           }
