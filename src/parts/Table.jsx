@@ -1,50 +1,91 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from 'axios';
 import Login from "./Login";
 
 
-const Table = () => {
+const Table = ({auth}) => {
 
   let [users, setusers] = useState([]);
+  let [msgfortable, setmsgfortable] = useState("");
+  console.log(auth);
+  /*
+  useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
 
+    const  getNewUsers = async () => {
+      try {
+        const response = await axios.get('https://restapinormal.vercel.app/users',{
+          signal: controller.signal
+        });
+        console.log(response.data);
+        isMounted && setusers(response.data);
+      } catch (error) {
+        console.log(error)
+      }
+    } 
+    getNewUsers();
+    return () => {
+      isMounted = false;
+      controller.abort();
+    }
+  }, []);*/
   const getUsers = async (e) => {
-    e.preventDefault()
-    try {
-      const { data } = await axios.get('https://restapinormal.vercel.app/users');
-      //console.log(data)
-      setusers(data)
-    } catch (error) {
-      console.log(error);
+    e.preventDefault();
+    if(auth) {
+
+      try {
+        const { data } = await axios.get('http://localhost:9002/users', {
+          withCredentials: true, headers: {
+            'Authorization': 'SDMFPQOWE10234123KJDLSKF012',
+          }
+        });
+        //console.log(data)
+        setusers(data)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    else {
+      setmsgfortable("You need log in yout account");
     }
   };
   return (
     <div className="container-lg">
-    <table className="table border rounded-3">
-      <thead>
-        <tr>
-          <td>#</td>
-          <td>User</td>
-          <td>Email</td>
-        </tr>
-      </thead>
-      <tbody>
+      <table className="table border rounded-3">
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>User</td>
+            <td>Email</td>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            users.map((user, i) => (
+              <tr key={i}>
+                <td>{user.id}</td>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+      <div className="container-sm">
+        <button type="button" className="btn btn-success" onClick={getUsers}>Get List Users</button>
+      </div>
+      <div className="p-5">
         {
-          users.map((user, i) => (
-            <tr key={i}>
-              <td>{user.id}</td>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
-            </tr>
-          ))
+          console.log(document.cookie)
         }
-      </tbody>
-    </table>
-    <div className="container-sm">
-      <button type="button" className="btn btn-success" onClick={ getUsers }>Get List Users</button>
-    </div>
-    <div className="p-5">
-      <Login/>
-    </div>
+
+      </div>
+      <div>
+        {
+          msgfortable
+        }
+      </div>
     </div>
   );
 };

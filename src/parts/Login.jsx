@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   let [user, setuser] = useState("");
@@ -7,20 +8,33 @@ const Login = () => {
   let [datos, setdatos] = useState([]);
   let [msg, setmsg] = useState(false)
   let [estado, setestado] = useState(0)
+  let [errMsg, setErrMsg] = useState('');
+  const navigate = useNavigate();
 
   const Autenticate = async (e) => {
     e.preventDefault()
     try {
       const { data, status } = await axios.post('https://restapinormal.vercel.app/login', { username: user, password: pass });
+      localStorage.setItem("token", data[1].accessToken);
       setdatos(data)
       setestado(status)
       setmsg(false)
       //console.log(data)
       //console.log(status)
+      navigate("/");
     } catch (error) {
       setmsg(true)
       setdatos([])
-      console.log(error)
+      if (!error?.response) {
+        setErrMsg('No Server Response');
+      } else if (error.response?.status === 400) {
+        setErrMsg('Missing Username or Password');
+      } else if (error.response?.status === 401) {
+        setErrMsg('Unauthorized');
+      } else {
+        setErrMsg('Login Failed');
+      }
+      console.log(errMsg)
     }
   };
 
